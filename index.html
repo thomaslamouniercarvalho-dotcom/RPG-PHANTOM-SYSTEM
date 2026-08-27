@@ -2036,11 +2036,14 @@
             
             const selectedSkills = Array.from(document.querySelectorAll('#skills-container input[type="checkbox"]:checked')).map(cb => cb.value);
 
+            currentSheetData.img_url = document.getElementById('sheet-img-url').value.trim();
+            currentSheetData.mask_img_url = document.getElementById('sheet-mask-url').value.trim();
+
             const sheetObj = {
                 id: id,
                 name: document.getElementById('sheet-name').value,
-                img_url: document.getElementById('sheet-img-url').value.trim(),
-                mask_img_url: document.getElementById('sheet-mask-url').value.trim(),
+                img_url: currentSheetData.img_url,
+                mask_img_url: currentSheetData.mask_img_url,
                 className: document.getElementById('sheet-class').value,
                 armor: document.getElementById('sheet-armor').value,
                 blessing: document.getElementById('sheet-blessing').value,
