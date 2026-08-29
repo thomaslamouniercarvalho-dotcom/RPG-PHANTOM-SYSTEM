@@ -286,45 +286,33 @@
             z-index: 1200;
             opacity: 0;
             pointer-events: none;
+            transform: translateX(100%);
             transform-origin: left center;
-            clip-path: inset(0 100% 0 0);
-            will-change: transform, clip-path, opacity;
+            will-change: transform, opacity;
+            transition: transform 0.56s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.18s ease;
         }
 
         .page-transition-overlay.active {
-            animation: wipeIn 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .page-transition-overlay.out {
-            animation: wipeOut 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+            transform: translateX(-100%);
         }
 
-        @keyframes wipeIn {
-            0% {
-                opacity: 0;
-                clip-path: inset(0 100% 0 0);
-                transform: scaleX(0.1);
+        @media (max-width: 767px) {
+            .page-transition-overlay {
+                transform: translateY(100%);
             }
-            15% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-                clip-path: inset(0 0 0 0);
-                transform: scaleX(1);
-            }
-        }
 
-        @keyframes wipeOut {
-            0% {
-                opacity: 1;
-                clip-path: inset(0 0 0 0);
-                transform: scaleX(1);
+            .page-transition-overlay.active {
+                transform: translateY(0);
             }
-            100% {
-                opacity: 0;
-                clip-path: inset(0 0 0 100%);
-                transform: scaleX(0.1);
+
+            .page-transition-overlay.out {
+                transform: translateY(-100%);
             }
         }
 
@@ -612,20 +600,39 @@
             padding: 18px 15px 80px;
             width: 100%;
             max-width: 100%;
+            position: relative;
+            min-height: calc(100vh - 160px);
         }
 
         .page-section {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
+            display: block;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            position: absolute;
+            inset: 0 auto auto 0;
+            transform: translateX(52px);
+            transition: opacity 0.42s ease, transform 0.48s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.42s;
         }
 
         .page-section.active {
-            display: block;
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(0);
+            transition-delay: 0s;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10deg); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 767px) {
+            .page-section {
+                transform: translateY(40px);
+            }
+
+            .page-section.active {
+                transform: translateY(0);
+            }
         }
 
         /* CARDS ESTILO PERSONA 5 */
