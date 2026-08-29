@@ -100,6 +100,238 @@
             }
         }
 
+        /* SPLASH SCREEN - ANIMAÇÃO DE ABERTURA */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .splash-screen.hidden {
+            display: none;
+        }
+
+        .splash-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .splash-text {
+            position: absolute;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            color: var(--p5-white);
+            text-align: center;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: splashTextFadeInOut 4s ease-in-out forwards;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(213, 0, 28, 0.8);
+        }
+
+        @keyframes splashTextFadeInOut {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            20% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        .splash-image {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            opacity: 0;
+            animation: splashImageAppear 2.5s ease-in-out 4s forwards;
+            border: 3px solid var(--p5-white);
+            box-shadow: 0 0 40px rgba(213, 0, 28, 0.9);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .splash-image:hover {
+            transform: scale(1.05);
+        }
+
+        .splash-image.clickable {
+            animation: splashImageAppear 2.5s ease-in-out 4s forwards, pulseGlow 1.5s ease-in-out 6.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(213, 0, 28, 0.9);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(213, 0, 28, 1), 0 0 80px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .splash-click-hint {
+            position: absolute;
+            bottom: 80px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            color: var(--p5-yellow);
+            text-align: center;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: clickHintFade 1s ease-in-out 6.5s forwards;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(213, 0, 28, 0.6);
+        }
+
+        @keyframes clickHintFade {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--p5-red);
+            opacity: 0;
+            z-index: 9998;
+            pointer-events: none;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .splash-overlay.active {
+            animation: revealSite 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes revealSite {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 1;
+            }
+            100% {
+                clip-path: polygon(150% 0, 150% 0, 150% 100%, 150% 100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes splashImageAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .splash-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: var(--p5-red);
+            opacity: 0;
+            animation: splashWaveMove 2s ease-in 6.5s forwards;
+            clip-path: polygon(0 100%, 100% 0, 100% 100%);
+            transform-origin: left bottom;
+        }
+
+        @keyframes splashWaveMove {
+            0% {
+                transform: translate(-150%, 150%) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(50%, -50%) rotate(45deg);
+                opacity: 1;
+            }
+        }
+
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--p5-red);
+            z-index: 1200;
+            opacity: 0;
+            pointer-events: none;
+            transform-origin: left center;
+            clip-path: inset(0 100% 0 0);
+            will-change: transform, clip-path, opacity;
+        }
+
+        .page-transition-overlay.active {
+            animation: wipeIn 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .page-transition-overlay.out {
+            animation: wipeOut 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes wipeIn {
+            0% {
+                opacity: 0;
+                clip-path: inset(0 100% 0 0);
+                transform: scaleX(0.1);
+            }
+            15% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                clip-path: inset(0 0 0 0);
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes wipeOut {
+            0% {
+                opacity: 1;
+                clip-path: inset(0 0 0 0);
+                transform: scaleX(1);
+            }
+            100% {
+                opacity: 0;
+                clip-path: inset(0 0 0 100%);
+                transform: scaleX(0.1);
+            }
+        }
+
+        .splash-screen.wave-active .splash-wave {
+            background: var(--p5-red);
+        }
+
         /* HEADER FIXO */
         .p5-header {
             position: fixed;
@@ -1316,6 +1548,20 @@
     </style>
 </head>
 <body>
+
+    <!-- SPLASH OVERLAY - Transição vermelha ao clicar -->
+    <div id="splash-overlay" class="splash-overlay"></div>
+    <div id="page-transition-overlay" class="page-transition-overlay"></div>
+
+    <!-- SPLASH SCREEN - ANIMAÇÃO DE ABERTURA -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-text">Bem-vindo à<br>Gangue dos Ladrões Estilosos</div>
+            <img class="splash-image" src="https://i.pinimg.com/736x/e1/12/76/e11276a7efc8372da9ef5ced5ffa43da.jpg" alt="Ladrões de Fantasmas">
+            <div class="splash-click-hint">Clique na imagem para continuar</div>
+            <div class="splash-wave"></div>
+        </div>
+    </div>
 
     <!-- Header -->
     <div class="p5-header">
@@ -2836,34 +3082,63 @@
 No começo, Ren percebe que há uma força poderosa por trás do cenário: Kamoshida, professor abusivo de educação física, usa sua posição para intimidar e explorar alunos, além de manipular a vida de todos ao redor. Quando o protagonista e seus aliados expõem a verdade por trás de sua máscara de "herói", o palácio de Kamoshida se torna palco de uma batalha contra a própria distorção que ele alimenta. Em um momento decisivo, Ren e seus companheiros confrontam o vilão, quebrando a ilusão que o mantinha no controle do mundo ao redor. Ao derrotá-lo, o sistema de opressão começa a ruir, e o grupo entende que a verdade pode ser transformada em força. É o primeiro grande passo na jornada dos Ladrões de Fantasmas: o começo da revolta contra os tiranos que se escondem por trás das aparências.`;
         }
 
+        let pageTransitionLocked = false;
+
+        function triggerThemeTransition(nextAction) {
+            const overlay = document.getElementById('page-transition-overlay');
+            if (!overlay || pageTransitionLocked) {
+                nextAction();
+                return;
+            }
+
+            pageTransitionLocked = true;
+            overlay.classList.remove('out');
+            overlay.style.background = getComputedStyle(document.body).getPropertyValue('--p5-red');
+            overlay.classList.add('active');
+
+            setTimeout(() => {
+                nextAction();
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                    overlay.classList.add('out');
+                    setTimeout(() => {
+                        overlay.classList.remove('out');
+                        pageTransitionLocked = false;
+                    }, 580);
+                }, 120);
+            }, 180);
+        }
+
         function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            triggerThemeTransition(() => {
+                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
 
-            const target = document.getElementById(pageId);
-            if (target) target.classList.add('active');
+                const target = document.getElementById(pageId);
+                if (target) target.classList.add('active');
 
-            const navOrder = ['fichas-menu', 'personas-menu', 'features-menu', 'mestre-menu', 'historia-mundo', 'historia-personagens'];
-            const idx = navOrder.indexOf(pageId);
-            if (idx !== -1) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+                const navOrder = ['fichas-menu', 'personas-menu', 'features-menu', 'mestre-menu', 'historia-mundo', 'historia-personagens'];
+                const idx = navOrder.indexOf(pageId);
+                if (idx !== -1) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
 
-            if (pageId === 'features-menu') {
-                renderFeaturesList();
-            }
-
-            if (pageId === 'mestre-menu') {
-                const unlocked = localStorage.getItem('p5_master_unlocked') === 'true';
-                const gate = document.getElementById('master-access-gate');
-                const content = document.getElementById('master-content');
-                if (unlocked) {
-                    if (gate) gate.style.display = 'none';
-                    if (content) content.style.display = 'block';
-                    renderMasterSheetList();
-                } else {
-                    if (gate) gate.style.display = 'block';
-                    if (content) content.style.display = 'none';
+                if (pageId === 'features-menu') {
+                    renderFeaturesList();
                 }
-            }
+
+                if (pageId === 'mestre-menu') {
+                    const unlocked = localStorage.getItem('p5_master_unlocked') === 'true';
+                    const gate = document.getElementById('master-access-gate');
+                    const content = document.getElementById('master-content');
+                    if (unlocked) {
+                        if (gate) gate.style.display = 'none';
+                        if (content) content.style.display = 'block';
+                        renderMasterSheetList();
+                    } else {
+                        if (gate) gate.style.display = 'block';
+                        if (content) content.style.display = 'none';
+                    }
+                }
+            });
         }
 
         // CONTROLADOR DE ÁUDIO E THEMES
@@ -2965,7 +3240,7 @@ No começo, Ren percebe que há uma força poderosa por trás do cenário: Kamos
             }
         }
 
-        setTheme('persona3');
+        // Theme será definido no window.onload com Persona 5 como padrão
         setDarkTheme(false);
 
         function getSheets() {
@@ -3303,10 +3578,43 @@ No começo, Ren percebe que há uma força poderosa por trás do cenário: Kamos
             loadMasterStory();
             renderMasterSheetList();
 
-            // Tenta dar Play automático via API do Iframe e reinicia do começo sempre que a página for carregada
-            setTimeout(playMusic, 800);
+            // Força Persona 5 como tema inicial
+            setTheme('persona5');
 
-            // Mobile e Safari frequentemente bloqueiam autoplay sem gesto do usuário
+            // SPLASH SCREEN - Só abre quando o usuário clicar na imagem
+            const splashScreen = document.getElementById('splash-screen');
+            const splashImage = document.querySelector('.splash-image');
+            const splashOverlay = document.getElementById('splash-overlay');
+            let clickHandled = false;
+
+            if (splashImage) {
+                setTimeout(() => {
+                    splashImage.classList.add('clickable');
+                }, 6500);
+
+                splashImage.addEventListener('click', function() {
+                    if (!clickHandled) {
+                        clickHandled = true;
+                        handleSplashClick();
+                    }
+                });
+            }
+
+            function handleSplashClick() {
+                if (splashOverlay) {
+                    splashOverlay.classList.add('active');
+
+                    setTimeout(() => {
+                        if (splashScreen) {
+                            splashScreen.classList.add('hidden');
+                        }
+                        setTimeout(() => {
+                            playMusic();
+                        }, 300);
+                    }, 1200);
+                }
+            }
+
             const autoPlayOnFirstUserGesture = () => {
                 if (isPlaying) {
                     playMusic();
