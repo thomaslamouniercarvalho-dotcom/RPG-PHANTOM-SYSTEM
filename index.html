@@ -17,6 +17,33 @@
             --p5-dark-gray: #141414;
         }
 
+        body.theme-persona5 {
+            --p5-red: #D5001C;
+            --p5-black: #0F0F0F;
+            --p5-white: #FFFFFF;
+            --p5-yellow: #FFE600;
+            --p5-gray: #222222;
+            --p5-dark-gray: #141414;
+            background-color: var(--p5-red);
+            background-image:
+                radial-gradient(rgba(0, 0, 0, 0.25) 15%, transparent 16%),
+                linear-gradient(135deg, rgba(0,0,0,0.3) 25%, transparent 25%);
+        }
+
+        body.theme-persona3 {
+            --p5-red: #4a6fa5;
+            --p5-black: #101A2D;
+            --p5-white: #EAF1FF;
+            --p5-yellow: #B9D1FF;
+            --p5-gray: #1C2A42;
+            --p5-dark-gray: #141F34;
+            background-color: var(--p5-red);
+            background-image:
+                radial-gradient(rgba(168, 201, 255, 0.22) 15%, transparent 16%),
+                linear-gradient(135deg, rgba(18, 30, 53, 0.45) 25%, transparent 25%);
+        }
+
+        body.theme-doom,
         body.doom-mode {
             --p5-red: #0f6b2d;
             --p5-black: #07150a;
@@ -28,6 +55,14 @@
             background-image:
                 radial-gradient(rgba(180,255,120,0.2) 15%, transparent 16%),
                 linear-gradient(135deg, rgba(10,20,12,0.45) 25%, transparent 25%);
+        }
+
+        body.dark-theme {
+            --p5-black: #050a13;
+            --p5-gray: #101b2a;
+            --p5-dark-gray: #0a121c;
+            --p5-white: #e8f2ff;
+            --p5-yellow: #c7d9ff;
         }
 
         * {
@@ -135,6 +170,28 @@
             color: var(--p5-black);
             transform: skew(-12deg) translateX(-6px);
             box-shadow: -6px 6px 0px var(--p5-white);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: var(--p5-black);
+            border: 2px solid var(--p5-white);
+            padding: 18px 16px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+        }
+
+        .feature-item strong {
+            color: var(--p5-yellow);
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.7rem;
+            display: block;
+            margin-bottom: 8px;
         }
 
         /* ÁREA PRINCIPAL DE CONTEÚDO */
@@ -378,15 +435,92 @@
         .skill-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 0.9rem;
             cursor: pointer;
+            padding: 8px 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(255,230,0,0.08);
+            border-color: rgba(255,230,0,0.5);
         }
 
         .skill-item input {
-            width: auto;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
             margin: 0;
+            border: 2px solid var(--p5-white);
+            border-radius: 5px;
+            background: #111;
+            position: relative;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .skill-item input:checked {
+            background: var(--p5-yellow);
+            border-color: var(--p5-yellow);
+            box-shadow: 0 0 0 2px rgba(255,230,0,0.2);
+        }
+
+        .skill-item input:checked::after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 1px;
+            width: 4px;
+            height: 9px;
+            border: solid var(--p5-black);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .resource-input {
+            width: 100%;
+            max-width: 120px;
+            min-height: 72px;
+            background: linear-gradient(180deg, #1f1f1f 0%, #111111 100%);
+            color: var(--p5-white);
+            border: 2px solid var(--p5-white);
+            border-radius: 14px;
+            padding: 12px 10px;
+            margin: 8px 0;
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.04), 0 6px 0 rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .resource-input:focus {
+            border-color: var(--p5-yellow);
+            outline: none;
+            box-shadow: inset 0 0 0 2px rgba(255,230,0,0.08), 0 0 0 3px rgba(255,230,0,0.18), 0 6px 0 rgba(0,0,0,0.3);
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .resource-input--compact {
+            max-width: 110px;
+            min-height: 58px;
+            font-size: 1.6rem;
+            margin: 0;
         }
 
         /* MUSICA CONTROL */
@@ -422,21 +556,95 @@
             color: black;
         }
 
+        .theme-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .theme-btn,
+        .doom-btn {
+            background: var(--p5-red);
+            color: var(--p5-white);
+            border: 2px solid var(--p5-white);
+            padding: 5px 10px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .theme-btn:hover,
+        .doom-btn:hover,
+        .theme-btn.active {
+            background: var(--p5-yellow);
+            color: var(--p5-black);
+        }
+
         .doom-btn {
             background: #1a9d3b;
             color: #e7ffe3;
             border: 2px solid #d7ff77;
-            padding: 5px 12px;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            cursor: pointer;
             box-shadow: 0 0 12px rgba(141, 255, 110, 0.45);
         }
 
         .doom-btn:hover {
             background: #2ecb4f;
             color: #0d160d;
+        }
+
+        .dark-theme-toggle {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 3px solid var(--p5-white);
+            background: rgba(15, 15, 15, 0.9);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1200;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 0;
+        }
+
+        .dark-theme-toggle:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+        }
+
+        .dark-theme-toggle .theme-icon {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark-theme-toggle .light-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .dark-theme-toggle .dark-icon {
+            opacity: 0;
+            transform: scale(0.75);
+        }
+
+        body.dark-theme .dark-theme-toggle .light-icon {
+            opacity: 0;
+            transform: scale(0.75);
+        }
+
+        body.dark-theme .dark-theme-toggle .dark-icon {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .sheet-grid {
@@ -805,19 +1013,43 @@
         <div class="menu-title">// NAVEGAÇÃO</div>
         <button class="nav-btn active" onclick="showPage('fichas-menu')">FICHAS</button>
         <button class="nav-btn" onclick="showPage('personas-menu')">PERSONAS</button>
+        <button class="nav-btn" onclick="showPage('features-menu')">FEATURES</button>
         <button class="nav-btn" onclick="showPage('historia-mundo')">HISTÓRIA DO MUNDO</button>
         <button class="nav-btn" onclick="showPage('historia-personagens')">HISTÓRIA PERSONAGENS</button>
     </nav>
 
+    <button id="dark-theme-toggle-btn" class="dark-theme-toggle" aria-label="Alternar tema claro e escuro" onclick="toggleDarkTheme()">
+        <svg class="theme-icon light-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" fill="#FFD166"></circle>
+            <g stroke="#FFD166" stroke-width="1.8" stroke-linecap="round">
+                <path d="M12 1.8V4.2"/>
+                <path d="M12 19.8V22.2"/>
+                <path d="M4.2 12H1.8"/>
+                <path d="M22.2 12H19.8"/>
+                <path d="M5.3 5.3L3.7 3.7"/>
+                <path d="M20.3 20.3L18.7 18.7"/>
+                <path d="M18.7 5.3L20.3 3.7"/>
+                <path d="M3.7 20.3L5.3 18.7"/>
+            </g>
+        </svg>
+        <svg class="theme-icon dark-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20.6 14.3C19.8 14.9 18.8 15.3 17.8 15.3C13.7 15.3 10.3 11.9 10.3 7.8C10.3 6.8 10.7 5.8 11.3 5C8.2 5.4 5.8 8.2 5.8 11.6C5.8 15.9 9.3 19.4 13.6 19.4C16.9 19.4 19.7 17 20.6 14.3Z" fill="#EAF1FF" stroke="#EAF1FF" stroke-width="1.1" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
     <!-- Player de Áudio YouTube (Configurado com autoplay em Loop) -->
     <div class="music-controller">
-        <span id="music-label" style="font-size: 0.85rem; font-weight: bold;">BGM: Persona 5 Menu</span>
+        <span id="music-label" style="font-size: 0.85rem; font-weight: bold;">BGM: Color Your Night</span>
+        <div class="theme-switcher">
+            <button class="theme-btn active" data-theme="persona5" onclick="setTheme('persona5')">PERSONA 5</button>
+            <button class="theme-btn" data-theme="persona3" onclick="setTheme('persona3')">PERSONA 3</button>
+            <button class="theme-btn" data-theme="doom" onclick="setTheme('doom')">DOOM</button>
+        </div>
         <button class="music-btn" id="toggle-audio-btn" onclick="toggleAudio()">PAUSAR MÚSICA</button>
-        <button class="doom-btn" id="doom-toggle-btn" onclick="toggleDoomMode()">DOOM</button>
     </div>
     
     <iframe id="bg-music-iframe" 
-            src="https://www.youtube.com/embed/OW1ps75BRSM?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=OW1ps75BRSM&controls=0&modestbranding=1" 
+            src="https://www.youtube.com/embed/j9Sn1nFGQQ8?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=j9Sn1nFGQQ8&controls=0&modestbranding=1" 
             allow="autoplay; encrypted-media; picture-in-picture">
     </iframe>
 
@@ -831,8 +1063,10 @@
                     <span>GERENCIADOR DE FICHAS</span>
                 </div>
                 <p>Crie, revise e edite as fichas dos integrantes do seu grupo de Ladrões de Fantasmas.</p>
-                <br>
-                <button class="action-btn" onclick="openSheetEditor()">+ CRIAR NOVA FICHA</button>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px;">
+                    <button class="action-btn" onclick="openSheetEditor()">+ CRIAR NOVA FICHA</button>
+                    <button class="action-btn" type="button" style="background: #444;" onclick="openImportSheetModal()">IMPORTAR FICHA POR TEXTO</button>
+                </div>
             </div>
 
             <div class="p5-card">
@@ -1029,7 +1263,7 @@
                         
                         <div class="stat-box" style="border-color: var(--p5-yellow);">
                             <label>CLASSE DE DEFESA (CD)</label>
-                            <span class="num-display" id="display-cd" style="font-size: 2.2rem;">10</span>
+                            <input type="number" id="display-cd" class="resource-input" min="1" max="99" value="10" oninput="setManualResourceOverrides(); recalculateAll();">
                             <span style="font-size: 0.75rem; color: #aaa;" id="cd-detail">Base Destreza: 10</span>
                         </div>
 
@@ -1042,7 +1276,7 @@
                                     <button type="button" class="btn-step" onclick="changeValue('hp_current', 1)">+</button>
                                 </div>
                                 <span>/</span>
-                                <span class="num-display" id="val-hp_max" style="color: #fff;">14</span>
+                                <input type="number" id="val-hp_max" class="resource-input resource-input--compact" min="1" max="999" value="14" oninput="setManualResourceOverrides(); recalculateAll();">
                             </div>
                             <span style="font-size: 0.75rem; color: #aaa;">Fórmula: 20 + Mod Res + Bônus</span>
                         </div>
@@ -1086,6 +1320,10 @@
                                 <span class="num-display" id="val-ecos" style="min-width: 80px;">0</span>
                                 <button type="button" class="btn-step" onclick="changeEcos(100)">+</button>
                             </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="action-btn" style="font-size: 0.9rem; padding: 8px 14px; margin: 0;" onclick="manualLevelUp()">SUBIR NÍVEL</button>
                         </div>
 
                         <div style="flex: 1; min-width: 200px;">
@@ -1611,6 +1849,8 @@
             carisma: 0,
             intelecto: 0,
             hp_current: 20,
+            hp_max_override: null,
+            cd_override: null,
             pd: 0,
             sanidade: 100,
             level: 1,
@@ -1620,10 +1860,19 @@
         };
 
         const BASE_ATTRIBUTE_POINTS_POOL = 47;
-        let currentAttributePointsLeft = 47;
+        let currentAttributePointsLeft = BASE_ATTRIBUTE_POINTS_POOL;
+        let attributePoolBonus = 0;
 
         function getAttributePoolLimit() {
-            return BASE_ATTRIBUTE_POINTS_POOL + Math.max(currentSheetData.level - 1, 0);
+            return BASE_ATTRIBUTE_POINTS_POOL + attributePoolBonus;
+        }
+
+        function getLevelBonusInfo(level) {
+            return {
+                hp: 5,
+                attribute: 1,
+                pd: 4
+            };
         }
 
         function initSkills() {
@@ -1676,9 +1925,24 @@
             recalculateAll();
         }
 
+        function setManualResourceOverrides() {
+            const cdInput = document.getElementById('display-cd');
+            const hpMaxInput = document.getElementById('val-hp_max');
+
+            if (cdInput) {
+                const cdValue = Number(cdInput.value);
+                currentSheetData.cd_override = cdInput.value !== '' && Number.isFinite(cdValue) && cdValue > 0 ? cdValue : null;
+            }
+
+            if (hpMaxInput) {
+                const hpValue = Number(hpMaxInput.value);
+                currentSheetData.hp_max_override = hpMaxInput.value !== '' && Number.isFinite(hpValue) && hpValue > 0 ? hpValue : null;
+            }
+        }
+
         function changeValue(key, step) {
             if (key === 'hp_current') {
-                const maxHp = parseInt(document.getElementById('val-hp_max').innerText) || 20;
+                const maxHp = Number(document.getElementById('val-hp_max').value) || 20;
                 currentSheetData.hp_current = Math.max(0, Math.min(maxHp, currentSheetData.hp_current + step));
                 document.getElementById('val-hp_current').innerText = currentSheetData.hp_current;
             } else if (key === 'pd') {
@@ -1690,36 +1954,204 @@
             }
         }
 
-        function changeLevel(step) {
-            const previousLevel = currentSheetData.level;
-            currentSheetData.level = Math.max(1, currentSheetData.level + step);
+        function createLevelBonusPanel() {
+            const existing = document.getElementById('level-bonus-panel');
+            if (existing) existing.remove();
 
-            if (currentSheetData.level > previousLevel) {
-                currentAttributePointsLeft += 1;
-            } else if (currentSheetData.level < previousLevel) {
-                currentAttributePointsLeft = Math.max(0, currentAttributePointsLeft - 1);
+            const panel = document.createElement('div');
+            panel.id = 'level-bonus-panel';
+            panel.style.position = 'fixed';
+            panel.style.top = '50%';
+            panel.style.left = '50%';
+            panel.style.transform = 'translate(-50%, -50%)';
+            panel.style.width = 'min(420px, 90vw)';
+            panel.style.background = 'var(--p5-black)';
+            panel.style.border = '3px solid var(--p5-white)';
+            panel.style.boxShadow = '0 0 0 6px rgba(0,0,0,0.35), 10px 10px 0 rgba(0,0,0,0.5)';
+            panel.style.padding = '20px';
+            panel.style.zIndex = '2000';
+            panel.style.display = 'none';
+            panel.style.color = 'var(--p5-white)';
+
+            const title = document.createElement('div');
+            title.textContent = 'ESCOLHA O BÔNUS DO NOVO NÍVEL';
+            title.style.fontFamily = "'Bebas Neue', cursive";
+            title.style.fontSize = '1.8rem';
+            title.style.color = 'var(--p5-yellow)';
+            title.style.marginBottom = '15px';
+            title.style.textAlign = 'center';
+            panel.appendChild(title);
+
+            const choices = [
+                { value: 'hp', label: '+5 de Vida Máxima' },
+                { value: 'attribute', label: '+1 ponto de atributo máximo' },
+                { value: 'pd', label: '+4 de PD' }
+            ];
+
+            choices.forEach((item) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = item.label;
+                btn.style.width = '100%';
+                btn.style.marginBottom = '10px';
+                btn.style.padding = '12px 14px';
+                btn.style.border = '2px solid var(--p5-white)';
+                btn.style.background = 'var(--p5-red)';
+                btn.style.color = 'var(--p5-white)';
+                btn.style.fontFamily = "'Bebas Neue', cursive";
+                btn.style.fontSize = '1.2rem';
+                btn.style.cursor = 'pointer';
+                btn.style.transform = 'skew(-6deg)';
+                btn.onclick = () => {
+                    applyLevelBonus(item.value);
+                    panel.remove();
+                };
+                panel.appendChild(btn);
+            });
+
+            const closeBtn = document.createElement('button');
+            closeBtn.type = 'button';
+            closeBtn.textContent = 'FECHAR';
+            closeBtn.style.width = '100%';
+            closeBtn.style.padding = '10px';
+            closeBtn.style.border = '2px solid var(--p5-white)';
+            closeBtn.style.background = '#444';
+            closeBtn.style.color = 'var(--p5-white)';
+            closeBtn.style.fontFamily = "'Bebas Neue', cursive";
+            closeBtn.style.fontSize = '1.1rem';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.onclick = () => panel.remove();
+            panel.appendChild(closeBtn);
+
+            document.body.appendChild(panel);
+            panel.style.display = 'block';
+        }
+
+        function getLevelRequirement(level) {
+            if (level <= 1) return 500;
+            if (level === 2) return 1000;
+            if (level === 3) return 2000;
+            if (level >= 4) return 3000;
+            return 500;
+        }
+
+        function clampEcosToLevelLimit() {
+            const limit = getLevelRequirement(currentSheetData.level);
+            if (currentSheetData.ecos > limit) {
+                currentSheetData.ecos = limit;
+            }
+        }
+
+        function renderFeaturesList() {
+            const container = document.getElementById('features-list');
+            if (!container) return;
+
+            const entries = [
+                { level: 1, requirement: 500, reward: 'Subir para nível 2' },
+                { level: 2, requirement: 1000, reward: 'Subir para nível 3' },
+                { level: 3, requirement: 2000, reward: 'Subir para nível 4' },
+                { level: 4, requirement: 3000, reward: 'Nível máximo' }
+            ];
+
+            container.innerHTML = entries.map(entry => `
+                <div class="feature-item">
+                    <strong>Nível ${entry.level}</strong>
+                    <div>Requisito: ${entry.requirement} Ecos</div>
+                    <div>Recompensa: ${entry.reward}</div>
+                </div>
+            `).join('');
+        }
+
+        function applyLevelBonus(choice) {
+            const bonusMap = {
+                hp: { label: '+5 de Vida Máxima', value: 5 },
+                attribute: { label: '+1 ponto de atributo máximo', value: 1 },
+                pd: { label: '+4 de PD', value: 4 }
+            };
+
+            if (!bonusMap[choice]) return;
+
+            const levelBonus = bonusMap[choice];
+            const currentLevel = Number(currentSheetData.level) || 1;
+
+            if (choice === 'hp') {
+                const currentHpMax = Number(document.getElementById('val-hp_max').value) || 0;
+                const previousOverride = Number(currentSheetData.hp_max_override) || 0;
+                const newMax = Math.max(currentHpMax, previousOverride) + levelBonus.value;
+                currentSheetData.hp_max_override = newMax;
+                document.getElementById('val-hp_max').value = newMax;
+            } else if (choice === 'attribute') {
+                attributePoolBonus += levelBonus.value;
+                currentAttributePointsLeft += levelBonus.value;
+            } else if (choice === 'pd') {
+                currentSheetData.pd += levelBonus.value;
+                document.getElementById('val-pd').innerText = currentSheetData.pd;
             }
 
+            const hpMax = Number(document.getElementById('val-hp_max').value) || 0;
+            currentSheetData.hp_current = hpMax;
+            document.getElementById('val-hp_current').innerText = hpMax;
+
+            recalculateAll();
+        }
+
+        function levelUpCharacter() {
+            const currentLevel = Number(currentSheetData.level) || 1;
+            const requirement = getLevelRequirement(currentLevel);
+
+            if (currentSheetData.ecos < requirement) {
+                return;
+            }
+
+            currentSheetData.ecos -= requirement;
+            currentSheetData.level = currentLevel + 1;
+            clampEcosToLevelLimit();
             document.getElementById('val-level').innerText = currentSheetData.level;
+            document.getElementById('val-ecos').innerText = currentSheetData.ecos;
+
+            const currentHpMax = Number(document.getElementById('val-hp_max').value) || 0;
+            currentSheetData.hp_current = currentHpMax;
+            document.getElementById('val-hp_current').innerText = currentHpMax;
+
+            createLevelBonusPanel();
+            updateEcosThreshold();
+            recalculateAll();
+        }
+
+        function manualLevelUp() {
+            levelUpCharacter();
+        }
+
+        function changeLevel(step) {
+            const previousLevel = currentSheetData.level;
+            const nextLevel = Math.max(1, currentSheetData.level + step);
+
+            if (nextLevel === previousLevel) return;
+
+            if (nextLevel > previousLevel) {
+                currentSheetData.level = nextLevel;
+                document.getElementById('val-level').innerText = currentSheetData.level;
+                createLevelBonusPanel();
+            } else {
+                currentSheetData.level = nextLevel;
+                document.getElementById('val-level').innerText = currentSheetData.level;
+            }
+
             updateEcosThreshold();
             recalculateAll();
         }
 
         function changeEcos(step) {
-            currentSheetData.ecos = Math.max(0, currentSheetData.ecos + step);
+            const limit = getLevelRequirement(currentSheetData.level);
+            currentSheetData.ecos = Math.max(0, Math.min(limit, currentSheetData.ecos + step));
             document.getElementById('val-ecos').innerText = currentSheetData.ecos;
             updateEcosThreshold();
         }
 
         function updateEcosThreshold() {
             const lvl = currentSheetData.level;
-            let req = "500 Ecos (Nv 1)";
-            if (lvl === 1) req = "500 Ecos";
-            else if (lvl === 2) req = "1000 Ecos";
-            else if (lvl === 3) req = "2000 Ecos";
-            else if (lvl === 4) req = "3000 Ecos (Max)";
-            
-            document.getElementById('level-threshold-info').innerText = `Próximo Nível Requerido: ${req}`;
+            const req = getLevelRequirement(lvl);
+            document.getElementById('level-threshold-info').innerText = `Próximo Nível Requerido: ${req} Ecos`;
         }
 
         function rollBlessing() {
@@ -1785,6 +2217,11 @@
             if (maxDisplay) maxDisplay.innerText = maxPool;
             document.getElementById('attr-points-left').innerText = currentAttributePointsLeft;
 
+            const currentHpMax = Number(document.getElementById('val-hp_max').value) || 0;
+            if (currentSheetData.hp_max_override && currentHpMax < currentSheetData.hp_max_override) {
+                document.getElementById('val-hp_max').value = currentSheetData.hp_max_override;
+            }
+
             const blessing = document.getElementById('sheet-blessing').value;
             let blessingDex = (blessing === "3") ? 1 : 0;
             let blessingRes = (blessing === "4") ? 1 : 0;
@@ -1833,17 +2270,31 @@
                 totalCD = baseDexCD + armorCD + blessingCD + classCD;
                 document.getElementById('cd-detail').innerText = `Base Destreza (${baseDexCD}) + Armadura (${armorCD}) + Outros (${blessingCD + classCD})`;
             }
-            document.getElementById('display-cd').innerText = totalCD;
+
+            const cdInput = document.getElementById('display-cd');
+            if (cdInput && !currentSheetData.cd_override) {
+                cdInput.value = totalCD;
+                currentSheetData.cd = totalCD;
+            } else if (cdInput) {
+                currentSheetData.cd = Number(cdInput.value) || totalCD;
+            }
 
             const effectiveRes = currentSheetData.resistencia + blessingRes;
             const modRes = getMod(effectiveRes);
             const totalMaxHP = Math.max(1, 20 + modRes + armorHP + classHP + blessingHP);
-            
-            document.getElementById('val-hp_max').innerText = totalMaxHP;
-            
-            if (currentSheetData.hp_current > totalMaxHP || currentSheetData.hp_current === 0) {
-                currentSheetData.hp_current = totalMaxHP;
-                document.getElementById('val-hp_current').innerText = totalMaxHP;
+            const hpMaxInput = document.getElementById('val-hp_max');
+
+            if (hpMaxInput && !currentSheetData.hp_max_override) {
+                hpMaxInput.value = totalMaxHP;
+                currentSheetData.hp_max = totalMaxHP;
+            } else if (hpMaxInput) {
+                currentSheetData.hp_max = Number(hpMaxInput.value) || totalMaxHP;
+            }
+
+            const maxHpValue = Number(hpMaxInput ? hpMaxInput.value : totalMaxHP) || totalMaxHP;
+            if (currentSheetData.hp_current > maxHpValue || currentSheetData.hp_current === 0) {
+                currentSheetData.hp_current = maxHpValue;
+                document.getElementById('val-hp_current').innerText = maxHpValue;
             }
 
             checkSkillsLimit();
@@ -1856,43 +2307,75 @@
             const target = document.getElementById(pageId);
             if (target) target.classList.add('active');
 
-            const idx = ['fichas-menu', 'personas-menu', 'historia-mundo', 'historia-personagens'].indexOf(pageId);
+            const navOrder = ['fichas-menu', 'personas-menu', 'features-menu', 'historia-mundo', 'historia-personagens'];
+            const idx = navOrder.indexOf(pageId);
             if (idx !== -1) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+
+            if (pageId === 'features-menu') {
+                renderFeaturesList();
+            }
         }
 
-        // CONTROLADOR DE ÁUDIO COM AUTOPLAY E ESTADO INICIAL ATIVO
+        // CONTROLADOR DE ÁUDIO E THEMES
         let isPlaying = true;
-        let currentMusicMode = 'persona';
+        let currentMusicMode = 'persona3';
+        let isDarkTheme = false;
 
-        // persona song
-        const PERSONA_MUSIC_URL = 'https://www.youtube.com/embed/OW1ps75BRSM?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=OW1ps75BRSM&controls=0&modestbranding=1';
-        // doom song
-        const DOOM_MUSIC_URL = 'https://www.youtube-nocookie.com/embed/gSJeHDlhYls?list=RDgSJeHDlhYls&autoplay=1&iv_load_policy=3&loop=1&start=';
+        const MUSIC_THEME_URLS = {
+            persona5: 'https://www.youtube.com/embed/OW1ps75BRSM?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=OW1ps75BRSM&controls=0&modestbranding=1',
+            persona3: 'https://www.youtube.com/embed/j9Sn1nFGQQ8?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=j9Sn1nFGQQ8&controls=0&modestbranding=1',
+            doom: 'https://www.youtube.com/embed/videoseries?list=PLLGw3FNrFVWAwLk-CRQBcPrM0ZpXB7V6P&enablejsapi=1&autoplay=1&mute=0&loop=1&controls=0&modestbranding=1'
+        };
 
-        function setMusicMode(mode) {
-            currentMusicMode = mode;
-            const iframe = document.getElementById('bg-music-iframe');
-            const isPersona = mode === 'persona';
+        const MUSIC_THEME_LABELS = {
+            persona5: 'BGM: Persona 5 Menu',
+            persona3: 'BGM: Color Your Night',
+            doom: 'BGM: Doctor Destiny Theme'
+        };
+
+        function setTheme(themeName) {
+            const validTheme = ['persona5', 'persona3', 'doom'].includes(themeName) ? themeName : 'persona3';
+            currentMusicMode = validTheme;
+
+            document.body.classList.remove('theme-persona5', 'theme-persona3', 'theme-doom', 'doom-mode');
+            document.body.classList.add(`theme-${validTheme}`);
+
+            if (validTheme === 'doom') {
+                document.body.classList.add('doom-mode');
+            }
+
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === validTheme);
+            });
+
             const label = document.getElementById('music-label');
-            const btn = document.getElementById('toggle-audio-btn');
+            if (label) {
+                label.innerText = MUSIC_THEME_LABELS[validTheme];
+            }
 
-            document.body.classList.toggle('doom-mode', !isPersona);
-            label.innerText = isPersona ? 'BGM: Persona 5 Menu' : 'BGM: Doctor Destiny Theme';
-            btn.innerText = isPersona ? 'PAUSAR MÚSICA' : 'VOLTAR PARA PERSONA';
-            isPlaying = true;
-
-            const targetUrl = isPersona ? PERSONA_MUSIC_URL : DOOM_MUSIC_URL;
+            const iframe = document.getElementById('bg-music-iframe');
             if (iframe) {
-                iframe.src = targetUrl;
+                iframe.src = MUSIC_THEME_URLS[validTheme];
                 iframe.style.display = 'none';
             }
+
+            isPlaying = true;
+        }
+
+        function setDarkTheme(enabled) {
+            isDarkTheme = enabled;
+            document.body.classList.toggle('dark-theme', enabled);
+        }
+
+        function toggleDarkTheme() {
+            setDarkTheme(!isDarkTheme);
         }
 
         function playMusic() {
             const iframe = document.getElementById('bg-music-iframe');
 
             if (iframe) {
-                iframe.src = currentMusicMode === 'persona' ? PERSONA_MUSIC_URL : DOOM_MUSIC_URL;
+                iframe.src = MUSIC_THEME_URLS[currentMusicMode] || MUSIC_THEME_URLS.persona3;
                 iframe.style.display = 'none';
             }
         }
@@ -1912,18 +2395,14 @@
         }
 
         function toggleDoomMode() {
-            const nextMode = currentMusicMode === 'persona' ? 'doom' : 'persona';
-            setMusicMode(nextMode);
+            const themes = ['persona5', 'persona3', 'doom'];
+            const currentIndex = themes.indexOf(currentMusicMode);
+            const next = themes[(currentIndex + 1) % themes.length];
+            setTheme(next);
         }
 
         function toggleAudio() {
             const btn = document.getElementById('toggle-audio-btn');
-
-            if (currentMusicMode === 'doom') {
-                setMusicMode('persona');
-                btn.innerText = 'PAUSAR MÚSICA';
-                return;
-            }
 
             if (!isPlaying) {
                 playMusic();
@@ -1936,8 +2415,142 @@
             }
         }
 
+        setTheme('persona3');
+        setDarkTheme(false);
+
         function getSheets() {
             return JSON.parse(localStorage.getItem('p5_rpg_sheets_v3') || '[]');
+        }
+
+        function openTextTransferModal({ title, mode, sheetId = null, initialText = '' }) {
+            const existing = document.getElementById('text-transfer-modal');
+            if (existing) existing.remove();
+
+            const modal = document.createElement('div');
+            modal.id = 'text-transfer-modal';
+            modal.style.position = 'fixed';
+            modal.style.inset = '0';
+            modal.style.background = 'rgba(0,0,0,0.7)';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.zIndex = '3000';
+
+            const box = document.createElement('div');
+            box.style.width = 'min(680px, 90vw)';
+            box.style.background = 'var(--p5-black)';
+            box.style.border = '3px solid var(--p5-white)';
+            box.style.boxShadow = '0 0 0 5px rgba(0,0,0,0.45), 10px 10px 0 rgba(0,0,0,0.45)';
+            box.style.padding = '22px';
+            box.style.color = 'var(--p5-white)';
+
+            const heading = document.createElement('div');
+            heading.textContent = title;
+            heading.style.fontFamily = "'Bebas Neue', cursive";
+            heading.style.fontSize = '2rem';
+            heading.style.color = 'var(--p5-yellow)';
+            heading.style.marginBottom = '12px';
+            box.appendChild(heading);
+
+            const area = document.createElement('textarea');
+            area.value = initialText;
+            area.style.width = '100%';
+            area.style.minHeight = '250px';
+            area.style.resize = 'vertical';
+            area.style.padding = '12px';
+            area.style.background = '#111';
+            area.style.color = 'var(--p5-white)';
+            area.style.border = '2px solid var(--p5-white)';
+            area.style.fontSize = '0.85rem';
+            area.style.fontFamily = 'Consolas, monospace';
+            box.appendChild(area);
+
+            const actions = document.createElement('div');
+            actions.style.display = 'flex';
+            actions.style.justifyContent = 'space-between';
+            actions.style.gap = '10px';
+            actions.style.marginTop = '16px';
+            actions.style.flexWrap = 'wrap';
+
+            const primaryBtn = document.createElement('button');
+            primaryBtn.type = 'button';
+            primaryBtn.className = 'action-btn';
+            primaryBtn.textContent = mode === 'export' ? 'COPIAR TEXTO' : 'IMPORTAR FICHA';
+            primaryBtn.onclick = async () => {
+                if (mode === 'export') {
+                    try {
+                        await navigator.clipboard.writeText(area.value);
+                    } catch (error) {
+                        area.focus();
+                        area.select();
+                    }
+                    alert('Texto copiado para a área de transferência.');
+                    return;
+                }
+
+                try {
+                    const parsed = JSON.parse(area.value.trim());
+                    if (!parsed || typeof parsed !== 'object' || !parsed.id || !parsed.name) {
+                        throw new Error('Ficha inválida');
+                    }
+
+                    let sheets = getSheets();
+                    const idx = sheets.findIndex(s => s.id === parsed.id);
+                    if (idx >= 0) sheets[idx] = parsed;
+                    else sheets.push(parsed);
+
+                    localStorage.setItem('p5_rpg_sheets_v3', JSON.stringify(sheets));
+                    renderSheetsList();
+                    showPage('fichas-menu');
+                    modal.remove();
+                    alert('Ficha importada com sucesso!');
+                } catch (error) {
+                    alert('Texto inválido. Cole apenas o conteúdo exportado de uma ficha.');
+                }
+            };
+
+            const closeBtn = document.createElement('button');
+            closeBtn.type = 'button';
+            closeBtn.className = 'action-btn';
+            closeBtn.style.background = '#444';
+            closeBtn.textContent = 'FECHAR';
+            closeBtn.onclick = () => modal.remove();
+
+            actions.appendChild(primaryBtn);
+            actions.appendChild(closeBtn);
+            box.appendChild(actions);
+            modal.appendChild(box);
+            document.body.appendChild(modal);
+
+            if (mode === 'export') {
+                area.focus();
+                area.select();
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(area.value).catch(() => {});
+                }
+            }
+        }
+
+        function exportSheetText(sheetId) {
+            const sheets = getSheets();
+            const sheet = sheets.find(s => s.id === sheetId);
+            if (!sheet) return;
+
+            const text = JSON.stringify(sheet, null, 2);
+            openTextTransferModal({
+                title: 'EXPORTAR FICHA POR TEXTO',
+                mode: 'export',
+                sheetId,
+                initialText: text
+            });
+        }
+
+        function openImportSheetModal() {
+            openTextTransferModal({
+                title: 'IMPORTAR FICHA POR TEXTO',
+                mode: 'import',
+                initialText: ''
+            });
         }
 
         function renderSheetsList() {
@@ -1961,8 +2574,9 @@
                             <h3>${escapeHtml(s.name)}</h3>
                             <p><strong>Classe:</strong> ${escapeHtml(s.className)}</p>
                             <p><strong>Nível:</strong> ${s.level} | <strong>CD:</strong> ${s.cd} | <strong>HP:</strong> ${s.hp_current}/${s.hp_max}</p>
-                            <div style="margin-top: 10px; display: flex; gap: 6px;">
+                            <div style="margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap;">
                                 <button class="action-btn" style="font-size: 0.8rem; padding: 5px 10px;" onclick="editSheet('${s.id}')">EDITAR</button>
+                                <button class="action-btn" style="font-size: 0.8rem; padding: 5px 10px;" onclick="exportSheetText('${s.id}')">EXPORTAR</button>
                                 <button class="action-btn" style="font-size: 0.8rem; padding: 5px 10px; background: #770000;" onclick="deleteSheet('${s.id}')">EXCLUIR</button>
                             </div>
                         </div>
@@ -1989,6 +2603,10 @@
                     document.getElementById('sheet-blessing').value = s.blessing;
                     document.getElementById('sheet-notes').value = s.notes || '';
 
+                    const totalSpent = (s.forca || 0) + (s.destreza || 0) + (s.resistencia || 0) + (s.carisma || 0) + (s.intelecto || 0);
+                    attributePoolBonus = Number(s.attribute_pool_bonus) || 0;
+                    currentAttributePointsLeft = Math.max(0, (BASE_ATTRIBUTE_POINTS_POOL + attributePoolBonus) - totalSpent);
+
                     currentSheetData = {
                         forca: s.forca || 0,
                         destreza: s.destreza || 0,
@@ -1996,6 +2614,8 @@
                         carisma: s.carisma || 0,
                         intelecto: s.intelecto || 0,
                         hp_current: s.hp_current || 20,
+                        hp_max_override: s.hp_max_override ?? null,
+                        cd_override: s.cd_override ?? null,
                         pd: s.pd || 0,
                         sanidade: s.sanidade || 100,
                         level: s.level || 1,
@@ -2014,7 +2634,9 @@
                 document.getElementById('sheet-id').value = '';
                 document.getElementById('sheet-img-url').value = '';
                 document.getElementById('sheet-mask-url').value = '';
-                currentSheetData = { forca: 0, destreza: 0, resistencia: 0, carisma: 0, intelecto: 0, hp_current: 20, pd: 0, sanidade: 100, level: 1, ecos: 0, img_url: '', mask_img_url: '' };
+                attributePoolBonus = 0;
+                currentAttributePointsLeft = BASE_ATTRIBUTE_POINTS_POOL;
+                currentSheetData = { forca: 0, destreza: 0, resistencia: 0, carisma: 0, intelecto: 0, hp_current: 20, hp_max_override: null, cd_override: null, pd: 0, sanidade: 100, level: 1, ecos: 0, img_url: '', mask_img_url: '' };
                 document.querySelectorAll('#skills-container input[type="checkbox"]').forEach(cb => cb.checked = false);
             }
 
@@ -2023,9 +2645,20 @@
             document.getElementById('val-level').innerText = currentSheetData.level;
             document.getElementById('val-ecos').innerText = currentSheetData.ecos;
 
+            const cdInput = document.getElementById('display-cd');
+            if (cdInput) {
+                cdInput.value = currentSheetData.cd_override ?? 10;
+            }
+
+            const hpMaxInput = document.getElementById('val-hp_max');
+            if (hpMaxInput) {
+                hpMaxInput.value = currentSheetData.hp_max_override ?? 14;
+            }
+
             updateCardPreview();
             updateMaskPreview();
             updateBlessingText();
+            renderFeaturesList();
             recalculateAll();
             showPage('ficha-editor');
         }
@@ -2039,6 +2672,9 @@
             currentSheetData.img_url = document.getElementById('sheet-img-url').value.trim();
             currentSheetData.mask_img_url = document.getElementById('sheet-mask-url').value.trim();
 
+            const finalCd = Number(document.getElementById('display-cd').value) || 0;
+            const finalHpMax = Number(document.getElementById('val-hp_max').value) || 0;
+
             const sheetObj = {
                 id: id,
                 name: document.getElementById('sheet-name').value,
@@ -2049,8 +2685,12 @@
                 blessing: document.getElementById('sheet-blessing').value,
                 notes: document.getElementById('sheet-notes').value,
                 skills: selectedSkills,
-                cd: document.getElementById('display-cd').innerText,
-                hp_max: document.getElementById('val-hp_max').innerText,
+                cd: finalCd,
+                hp_max: finalHpMax,
+                cd_override: currentSheetData.cd_override,
+                hp_max_override: currentSheetData.hp_max_override,
+                attribute_pool_bonus: attributePoolBonus,
+                points_left: currentAttributePointsLeft,
                 ...currentSheetData
             };
 
