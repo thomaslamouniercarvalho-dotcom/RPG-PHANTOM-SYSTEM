@@ -194,6 +194,185 @@
             margin-bottom: 8px;
         }
 
+        .master-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .master-sheet-card {
+            position: relative;
+            background: var(--p5-black);
+            border: 2px solid var(--p5-white);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .master-sheet-card.is-dead {
+            border-color: var(--p5-red);
+        }
+
+        .master-sheet-card.is-dead .master-sheet-avatar img {
+            filter: grayscale(1) brightness(0.7);
+        }
+
+        .master-sheet-avatar {
+            width: 100%;
+            height: 130px;
+            border: 2px solid var(--p5-white);
+            background: #111;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .master-sheet-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .master-sheet-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.3rem;
+            color: var(--p5-yellow);
+            margin-bottom: 6px;
+        }
+
+        .master-health-bar {
+            width: 100%;
+            height: 12px;
+            background: #171717;
+            border: 2px solid var(--p5-white);
+            overflow: hidden;
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .master-health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #57d76f, #d7d857, #d87b57);
+            transition: width 0.2s ease;
+        }
+
+        .master-health-values {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 6px;
+            font-size: 0.7rem;
+            color: var(--p5-white);
+        }
+
+        .master-health-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .master-health-controls button {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--p5-white);
+            background: var(--p5-red);
+            color: var(--p5-white);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 0;
+        }
+
+        .master-provas {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .master-prova {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--p5-white);
+            background: #1b1b1b;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--p5-yellow);
+            font-size: 0.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .master-prova.active {
+            background: var(--p5-red);
+            border-color: var(--p5-yellow);
+        }
+
+        .master-death-x {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(213, 0, 28, 0.9);
+            border: 2px solid var(--p5-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.6rem;
+            line-height: 1;
+            color: var(--p5-white);
+        }
+
+        .password-panel {
+            background: var(--p5-black);
+            border: 3px solid var(--p5-white);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.45);
+            padding: 24px;
+            max-width: 480px;
+            margin: 30px auto;
+        }
+
+        .password-panel h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2rem;
+            color: var(--p5-yellow);
+            margin-bottom: 8px;
+        }
+
+        .password-panel p {
+            margin-bottom: 14px;
+            color: var(--p5-white);
+        }
+
+        .password-error {
+            margin-top: 10px;
+            color: #ff9999;
+            min-height: 20px;
+            font-weight: 700;
+        }
+
+        .master-story-box {
+            background: #121212;
+            border: 2px solid var(--p5-white);
+            padding: 16px;
+            margin-top: 18px;
+        }
+
+        .master-story-box textarea {
+            min-height: 280px;
+            margin-bottom: 0;
+        }
+
         /* ÁREA PRINCIPAL DE CONTEÚDO */
         .main-content {
             margin-right: 0;
@@ -224,7 +403,7 @@
             padding: 20px;
             margin-bottom: 25px;
             box-shadow: 6px 6px 0px rgba(0,0,0,0.6);
-            transform: skew(-1deg);
+            transform: none;
         }
 
         .p5-card-header {
@@ -265,8 +444,8 @@
             background: var(--p5-dark-gray);
             border: 3px solid var(--p5-white);
             padding: 15px;
-            box-shadow: 6px 6px 0px var(--p5-yellow);
-            transform: rotate(1deg) skew(-2deg);
+            box-shadow: none;
+            transform: none;
         }
 
         .char-card-preview-box h4 {
@@ -928,6 +1107,144 @@
             color: #bbb;
         }
 
+        @media (max-width: 767px) {
+            .p5-header {
+                position: sticky;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                max-width: none;
+                padding: 10px 12px;
+                transform: none;
+                border-radius: 0;
+                box-shadow: none;
+                border-left: none;
+                border-right: none;
+                border-top: 3px solid var(--p5-white);
+                border-bottom: 3px solid var(--p5-white);
+                margin: 0;
+            }
+
+            .p5-header h1 {
+                font-size: 1.35rem;
+                letter-spacing: 1px;
+                transform: none;
+            }
+
+            .dark-theme-toggle {
+                top: 10px;
+                right: 12px;
+                width: 42px;
+                height: 42px;
+            }
+
+            .right-sidebar {
+                margin-top: 0;
+                padding: 12px 10px 10px;
+                width: calc(100% - 20px);
+                margin-left: 10px;
+                margin-right: 10px;
+                border-left: none;
+                border-right: none;
+                border-bottom: 4px solid var(--p5-white);
+                box-shadow: none;
+                transform: none;
+            }
+
+            .menu-title {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                transform: none;
+            }
+
+            .nav-btn {
+                padding: 10px 12px;
+                font-size: 1rem;
+                transform: none;
+                box-shadow: none;
+                border: 2px solid var(--p5-black);
+                border-radius: 0;
+            }
+
+            .nav-btn:hover, .nav-btn.active {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .main-content {
+                padding: 12px 12px 120px;
+            }
+
+            .p5-card {
+                padding: 14px;
+                width: 100%;
+                max-width: none;
+                transform: none;
+                box-shadow: none;
+            }
+
+            .p5-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                font-size: 1.5rem;
+            }
+
+            .char-card-container {
+                flex-direction: column;
+            }
+
+            #ficha-editor .p5-card {
+                min-height: calc(100vh - 220px);
+                display: flex;
+                flex-direction: column;
+            }
+
+            #sheet-form {
+                width: 100%;
+            }
+
+            .stats-grid,
+            .sheet-grid,
+            .personas-grid,
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .sheet-item {
+                flex-direction: column;
+            }
+
+            .sheet-item-avatar {
+                width: 100%;
+                height: 150px;
+            }
+
+            .music-controller {
+                position: static;
+                margin: 0 0 16px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .theme-switcher {
+                width: 100%;
+            }
+
+            .theme-btn {
+                flex: 1 1 calc(33.333% - 6px);
+            }
+
+            .resource-input {
+                max-width: 100%;
+            }
+
+            .resource-input--compact {
+                max-width: 100%;
+            }
+        }
+
         @media (min-width: 768px) {
             body {
                 flex-direction: row;
@@ -1014,6 +1331,7 @@
         <button class="nav-btn active" onclick="showPage('fichas-menu')">FICHAS</button>
         <button class="nav-btn" onclick="showPage('personas-menu')">PERSONAS</button>
         <button class="nav-btn" onclick="showPage('features-menu')">FEATURES</button>
+        <button class="nav-btn" onclick="requestMasterAccess()">MESTRE</button>
         <button class="nav-btn" onclick="showPage('historia-mundo')">HISTÓRIA DO MUNDO</button>
         <button class="nav-btn" onclick="showPage('historia-personagens')">HISTÓRIA PERSONAGENS</button>
     </nav>
@@ -1691,6 +2009,32 @@
             </div>
         </section>
 
+        <!-- PÁGINA: MESTRE -->
+        <section id="mestre-menu" class="page-section">
+            <div class="p5-card">
+                <div class="p5-card-header">
+                    <span>ÁREA DO MESTRE</span>
+                </div>
+                <div id="master-access-gate" class="password-panel">
+                    <h3>ACESSO RESTRITO</h3>
+                    <p>Digite a senha para liberar a visão do mestre do grupo.</p>
+                    <input id="master-password-input" type="password" placeholder="Senha do mestre...">
+                    <button class="action-btn" onclick="unlockMasterMenu()">ENTRAR</button>
+                    <div id="master-password-error" class="password-error"></div>
+                </div>
+                <div id="master-content" style="display:none;">
+                    <div class="p5-card-header" style="margin-top: 8px;">FICHAS EM TELA DO MESTRE</div>
+                    <div id="master-sheet-list" class="master-card-grid"></div>
+
+                    <div class="master-story-box">
+                        <div class="p5-card-header" style="font-size: 1.6rem; margin-bottom: 8px; border-bottom: 0; display:block;">HISTÓRIA E ANOTAÇÕES</div>
+                        <textarea id="master-story-text" rows="18" placeholder="História do começo até a derrota do Kamoshida..."></textarea>
+                        <button class="action-btn" onclick="saveMasterStory()">SALVAR HISTÓRIA</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- PÁGINA: HISTÓRIA DO MUNDO -->
         <section id="historia-mundo" class="page-section">
             <div class="p5-card">
@@ -2300,6 +2644,198 @@
             checkSkillsLimit();
         }
 
+        const MASTER_PASSWORD = 'fanthomlindo';
+
+        function requestMasterAccess() {
+            const unlocked = localStorage.getItem('p5_master_unlocked') === 'true';
+            if (unlocked) {
+                showPage('mestre-menu');
+                renderMasterSheetList();
+                return;
+            }
+
+            showPage('mestre-menu');
+            const gate = document.getElementById('master-access-gate');
+            const content = document.getElementById('master-content');
+            if (gate) gate.style.display = 'block';
+            if (content) content.style.display = 'none';
+
+            const input = document.getElementById('master-password-input');
+            if (input) {
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function unlockMasterMenu() {
+            const input = document.getElementById('master-password-input');
+            const error = document.getElementById('master-password-error');
+            const gate = document.getElementById('master-access-gate');
+            const content = document.getElementById('master-content');
+
+            if (!input) return;
+
+            if (input.value === MASTER_PASSWORD) {
+                localStorage.setItem('p5_master_unlocked', 'true');
+                if (gate) gate.style.display = 'none';
+                if (content) content.style.display = 'block';
+                if (error) error.textContent = '';
+                renderMasterSheetList();
+                return;
+            }
+
+            if (error) error.textContent = 'Senha incorreta. Tente novamente.';
+        }
+
+        function updateMasterSheetListIfVisible() {
+            const list = document.getElementById('master-sheet-list');
+            if (!list || getComputedStyle(list.parentElement).display === 'none') return;
+            renderMasterSheetList();
+        }
+
+        function autoSaveSheetToMaster() {
+            const sheetId = document.getElementById('sheet-id').value;
+            if (!sheetId) return;
+            
+            const sheets = getSheets();
+            const existing = sheets.find(s => s.id === sheetId);
+            if (!existing) return;
+            
+            existing.name = document.getElementById('sheet-name').value;
+            existing.img_url = document.getElementById('sheet-img-url').value.trim();
+            existing.mask_img_url = document.getElementById('sheet-mask-url').value.trim();
+            existing.hp_current = Number(currentSheetData.hp_current || 0);
+            existing.hp_max = Number(document.getElementById('val-hp_max').value) || 0;
+            existing.cd = Number(document.getElementById('display-cd').value) || 0;
+            
+            localStorage.setItem('p5_rpg_sheets_v3', JSON.stringify(sheets));
+            updateMasterSheetListIfVisible();
+        }
+
+        function renderMasterSheetList() {
+            const list = document.getElementById('master-sheet-list');
+            if (!list) return;
+
+            const sheets = getSheets();
+            if (!sheets.length) {
+                list.innerHTML = '<p style="grid-column: 1/-1;">Nenhuma ficha cadastrada para o mestre visualizar.</p>';
+                return;
+            }
+
+            list.innerHTML = sheets.map((sheet) => {
+                const hpCurrent = Number(sheet.hp_current || 0);
+                const hpMax = Number(sheet.hp_max || 20);
+                const percent = Math.max(0, Math.min(100, (hpCurrent / Math.max(1, hpMax)) * 100));
+                const name = escapeHtml(sheet.name || 'Sem nome');
+                const img = sheet.img_url ? `<img src="${escapeHtml(sheet.img_url)}" alt="${name}">` : '<div style="display:flex; align-items:center; justify-content:center; height:100%; color:#666;">SEM FOTO</div>';
+                const deathMarks = Number(sheet.deathMarks || 0);
+                const dead = Boolean(sheet.isDead || deathMarks >= 3);
+                const markers = Array.from({ length: 3 }, (_, idx) => {
+                    const active = idx < deathMarks;
+                    return `<button class="master-prova ${active ? 'active' : ''}" data-sheet-id="${sheet.id}" data-mark="${idx + 1}" title="Marcar prova contra a morte">${active ? '✦' : ''}</button>`;
+                }).join('');
+
+                return `
+                    <div class="master-sheet-card ${dead ? 'is-dead' : ''}" data-sheet-id="${sheet.id}">
+                        ${dead ? '<div class="master-death-x">X</div>' : ''}
+                        <div class="master-sheet-avatar">${img}</div>
+                        <div class="master-sheet-name">${name}</div>
+                        <div class="master-health-bar">
+                            <div class="master-health-fill" style="width: ${percent}%"></div>
+                        </div>
+                        <div class="master-health-values">
+                            <span>VIDA: ${hpCurrent}/${hpMax}</span>
+                            <span>${Math.round(percent)}%</span>
+                        </div>
+                        <div class="master-health-controls">
+                            <button type="button" data-sheet-id="${sheet.id}" data-action="life-down">-</button>
+                            <button type="button" data-sheet-id="${sheet.id}" data-action="life-up">+</button>
+                        </div>
+                        <div class="master-provas" aria-label="Marcadores de provações contra a morte">${markers}</div>
+                    </div>
+                `;
+            }).join('');
+
+            list.querySelectorAll('[data-action]').forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const id = event.currentTarget.dataset.sheetId;
+                    const action = event.currentTarget.dataset.action;
+                    adjustMasterLife(id, action === 'life-up' ? 1 : -1);
+                });
+            });
+
+            list.querySelectorAll('.master-prova').forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const id = event.currentTarget.dataset.sheetId;
+                    const val = Number(event.currentTarget.dataset.mark || 0);
+                    toggleDeathMark(id, val);
+                });
+            });
+        }
+
+        function setupSheetFormLiveUpdates() {
+            const form = document.getElementById('sheet-form');
+            if (!form) return;
+            
+            const updateHandler = () => {
+                setTimeout(() => autoSaveSheetToMaster(), 150);
+            };
+            
+            form.querySelectorAll('input[type="text"], input[type="url"], select').forEach((input) => {
+                input.addEventListener('change', updateHandler);
+                input.addEventListener('blur', updateHandler);
+                input.addEventListener('input', updateHandler);
+            });
+            
+            form.addEventListener('change', updateHandler);
+        }
+
+        function adjustMasterLife(sheetId, delta) {
+            const sheets = getSheets();
+            const sheet = sheets.find(item => item.id === sheetId);
+            if (!sheet) return;
+
+            const maxHp = Number(sheet.hp_max || 20);
+            const nextHp = Math.max(0, Math.min(maxHp, Number(sheet.hp_current || 0) + delta));
+            sheet.hp_current = nextHp;
+            sheet.isDead = false;
+            if (nextHp > 0 && Number(sheet.deathMarks || 0) >= 3) {
+                sheet.isDead = true;
+            }
+            localStorage.setItem('p5_rpg_sheets_v3', JSON.stringify(sheets));
+            renderMasterSheetList();
+        }
+
+        function toggleDeathMark(sheetId, markValue) {
+            const sheets = getSheets();
+            const sheet = sheets.find(item => item.id === sheetId);
+            if (!sheet) return;
+
+            const currentMarks = Number(sheet.deathMarks || 0);
+            if (currentMarks >= 3 && !(markValue <= currentMarks)) return;
+
+            const nextMarks = currentMarks >= markValue ? Math.max(0, currentMarks - 1) : Math.min(3, currentMarks + 1);
+            sheet.deathMarks = nextMarks;
+            sheet.isDead = nextMarks >= 3;
+            localStorage.setItem('p5_rpg_sheets_v3', JSON.stringify(sheets));
+            renderMasterSheetList();
+        }
+
+        function saveMasterStory() {
+            const value = document.getElementById('master-story-text');
+            if (!value) return;
+            localStorage.setItem('p5_master_story', value.value);
+            alert('História e anotações salvas.');
+        }
+
+        function loadMasterStory() {
+            const value = document.getElementById('master-story-text');
+            if (!value) return;
+            value.value = localStorage.getItem('p5_master_story') || `A história começa com Ren Amamiya, transferido para a cidade de Shibuya após um caso de agressão em que foi injustamente acusado e enviado para a prisão juvenil. Em meio a um ambiente hostil, ele conhece Morgana, um estranho gato que o leva à entrada secreta de uma caverna urbana conhecida como Metaverse, onde a realidade se transforma em um mundo paralelo. Ali, Ren e Morgana descobrem que as pessoas são influenciadas por desejos e distorções e que os chamados "palácios" são construções mentais geradas por traumas e egoísmos.
+
+No começo, Ren percebe que há uma força poderosa por trás do cenário: Kamoshida, professor abusivo de educação física, usa sua posição para intimidar e explorar alunos, além de manipular a vida de todos ao redor. Quando o protagonista e seus aliados expõem a verdade por trás de sua máscara de "herói", o palácio de Kamoshida se torna palco de uma batalha contra a própria distorção que ele alimenta. Em um momento decisivo, Ren e seus companheiros confrontam o vilão, quebrando a ilusão que o mantinha no controle do mundo ao redor. Ao derrotá-lo, o sistema de opressão começa a ruir, e o grupo entende que a verdade pode ser transformada em força. É o primeiro grande passo na jornada dos Ladrões de Fantasmas: o começo da revolta contra os tiranos que se escondem por trás das aparências.`;
+        }
+
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -2307,12 +2843,26 @@
             const target = document.getElementById(pageId);
             if (target) target.classList.add('active');
 
-            const navOrder = ['fichas-menu', 'personas-menu', 'features-menu', 'historia-mundo', 'historia-personagens'];
+            const navOrder = ['fichas-menu', 'personas-menu', 'features-menu', 'mestre-menu', 'historia-mundo', 'historia-personagens'];
             const idx = navOrder.indexOf(pageId);
             if (idx !== -1) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
 
             if (pageId === 'features-menu') {
                 renderFeaturesList();
+            }
+
+            if (pageId === 'mestre-menu') {
+                const unlocked = localStorage.getItem('p5_master_unlocked') === 'true';
+                const gate = document.getElementById('master-access-gate');
+                const content = document.getElementById('master-content');
+                if (unlocked) {
+                    if (gate) gate.style.display = 'none';
+                    if (content) content.style.display = 'block';
+                    renderMasterSheetList();
+                } else {
+                    if (gate) gate.style.display = 'block';
+                    if (content) content.style.display = 'none';
+                }
             }
         }
 
@@ -2588,6 +3138,7 @@
         function openSheetEditor(sheetId = null) {
             const form = document.getElementById('sheet-form');
             form.reset();
+            setupSheetFormLiveUpdates();
 
             if (sheetId) {
                 const sheets = getSheets();
@@ -2687,6 +3238,7 @@
                 skills: selectedSkills,
                 cd: finalCd,
                 hp_max: finalHpMax,
+                hp_current: Number(currentSheetData.hp_current || 0),
                 cd_override: currentSheetData.cd_override,
                 hp_max_override: currentSheetData.hp_max_override,
                 attribute_pool_bonus: attributePoolBonus,
@@ -2694,12 +3246,22 @@
                 ...currentSheetData
             };
 
+            const existing = getSheets().find(s => s.id === id);
+            if (existing) {
+                sheetObj.deathMarks = Number(existing.deathMarks || 0);
+                sheetObj.isDead = Boolean(existing.isDead || sheetObj.deathMarks >= 3);
+            } else {
+                sheetObj.deathMarks = 0;
+                sheetObj.isDead = false;
+            }
+
             let sheets = getSheets();
             const idx = sheets.findIndex(s => s.id === id);
             if (idx >= 0) sheets[idx] = sheetObj;
             else sheets.push(sheetObj);
 
             localStorage.setItem('p5_rpg_sheets_v3', JSON.stringify(sheets));
+            updateMasterSheetListIfVisible();
             renderSheetsList();
             showPage('fichas-menu');
         }
@@ -2738,6 +3300,8 @@
             initSkills();
             renderSheetsList();
             loadLores();
+            loadMasterStory();
+            renderMasterSheetList();
 
             // Tenta dar Play automático via API do Iframe e reinicia do começo sempre que a página for carregada
             setTimeout(playMusic, 800);
